@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
   const { login } = useAuth(); // Get login function
+  const location = useLocation(); // Get current location for redirect
 
   // Form field state
   const [formData, setFormData] = useState({
@@ -95,8 +96,9 @@ const Login = () => {
         // Clear form
         setFormData({ email: '', password: '' });
 
-        // Redirect to dashboard
-        navigate('/dashboard');
+        // Redirect to intended page or dashboard
+        const from = location.state?.from?.pathname || '/dashboard';
+        navigate(from, { replace: true });
 
       } else {
         // Login failed
