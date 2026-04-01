@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import api from '../services/api';
 
 const Login = () => {
   const { login } = useAuth(); // Get login function
@@ -75,21 +76,15 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      // Send login request
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: formData.email.trim().toLowerCase(),
-          password: formData.password
-        })
+      // Send login request using API utility
+      const response = await api.post('/api/auth/login', {
+        email: formData.email.trim().toLowerCase(),
+        password: formData.password
       });
 
-      const data = await response.json();
+      const data = response.data; // axios puts data in .data property
 
-      if (response.ok) {
+      if (response.status === 200) {
         // Login successful
         login(data.user, data.token); // Use context function
 
