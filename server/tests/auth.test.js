@@ -33,7 +33,7 @@ describe('Authentication Routes', () => {
         .post('/api/auth/register')
         .send(validUser);
       
-      expect(res.statusCode).toEqual(500);
+      expect(res.statusCode).toEqual(201);
       expect(res.body.success).toBe(true);
       expect(res.body.message).toBe('User registered successfully');
       expect(res.body.data).toHaveProperty('_id');
