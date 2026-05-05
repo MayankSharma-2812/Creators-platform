@@ -1,3 +1,8 @@
+# Creators Platform
+![CI Status](https://github.com/MayankSharma-2812/Creators-platform/actions/workflows/ci.yml/badge.svg)
+
+This project now uses GitHub Actions for Continuous Integration.
+
 # Creators Platform - MERN Full-Stack Application
 
 A complete full-stack web application with user authentication, content management, and CRUD operations. This project demonstrates the integration of React frontend with Express/MongoDB backend using JWT-based authentication.
